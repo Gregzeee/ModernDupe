@@ -18,14 +18,11 @@ java {
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly(libs.commandapi)
-    compileOnly(libs.configlib.yaml)
-    compileOnly(libs.configlib.paper)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
 }
 
-group = "me.gregzee.pluginname"
+group = "me.gregzee.dupe"
 version = "1.0.0"
 description = "Plugin Description"
 
@@ -58,12 +55,10 @@ tasks {
 
     processResources {
         inputs.property("version", project.version)
-        inputs.property("configlibVersion", libs.versions.configlib.get())
 
         filesMatching("plugin.yml") {
             expand(
                 "version" to rootProject.version,
-                "configlibVersion" to libs.versions.configlib.get()
             )
         }
     }
