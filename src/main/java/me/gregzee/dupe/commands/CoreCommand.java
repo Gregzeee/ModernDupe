@@ -8,9 +8,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -36,8 +39,25 @@ public final class CoreCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
+	// List of arguments to tab complete
+	private static final String[] COMMANDS = { "reload" };
+
 	@Override
 	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-		return List.of();
+		if (!(sender instanceof Player)) {
+			return new ArrayList<>();
+		}
+
+		List<String> completions = new ArrayList<>();
+		List<String> suggestions = new ArrayList<>();
+
+		if (args.length == 1) {
+			completions.addAll(Arrays.asList(COMMANDS));
+		}
+
+		StringUtil.copyPartialMatches(args[0], completions, suggestions);
+		suggestions.sort(String.CASE_INSENSITIVE_ORDER);
+
+		return suggestions;
 	}
 }
