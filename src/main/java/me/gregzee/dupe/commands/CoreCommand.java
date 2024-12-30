@@ -26,6 +26,11 @@ public final class CoreCommand implements CommandExecutor, TabCompleter {
 		}
 
 		if (args[0].equalsIgnoreCase("reload")) {
+			if (!sender.hasPermission(ConfigManager.Permissions.getReload())) {
+				sender.sendMessage(ConfigManager.Messages.getNoPermission());
+				return true;
+			}
+
 			try {
 				ConfigManager.load();
 				sender.sendMessage(Component.text(ConfigManager.Messages.getReloadSuccessful()));
