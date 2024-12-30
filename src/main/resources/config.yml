@@ -1,0 +1,21 @@
+# All permissions linked to commands
+permissions:
+  dupe: "dupe.use" # Permission required to use /dupe
+  reload: "dupe.reload" # Permission required to reload the configuration
+
+# Blacklist for items that you are not allowed to dupe
+blacklist:
+  - "BEDROCK"
+  - "AIR"
+  - "COMMAND_BLOCK"
+  - "GRASS_BLOCK"
+
+# The amount of times a person can dupe something with one command
+maxDupeCount: 5
+
+# All messages used within the plugin
+messages:
+  reloadSuccessful: "" # Sent when reloading the config was successful
+  reloadFailed: "" # Sent when reloading the configuration failed
+  noPermission: "" # Sent if the player doesn't have permission to execute said command
+  exceededMaxDupeCount: "" # Sent if the player tries to dupe more than they are allowed to at once
