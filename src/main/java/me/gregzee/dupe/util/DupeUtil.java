@@ -1,4 +1,4 @@
 package me.gregzee.dupe.util;
 
-public class DupeUtil {
+public final class DupeUtil {
 }
