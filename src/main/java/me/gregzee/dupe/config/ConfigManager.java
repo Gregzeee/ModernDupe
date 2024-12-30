@@ -64,6 +64,7 @@ public final class ConfigManager {
 		Messages.reloadFailed = config.getString("messages.reloadFailed");
 		Messages.noPermission = config.getString("messages.noPermission");
 		Messages.exceededMaxDupeCount = config.getString("messages.exceededMaxDupeCount");
+		Messages.onlyPlayers = config.getString("messages.onlyPlayers");
 	}
 
 }
