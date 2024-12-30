@@ -2,6 +2,7 @@ package me.gregzee.dupe;
 
 import lombok.Getter;
 import me.gregzee.dupe.commands.CoreCommand;
+import me.gregzee.dupe.commands.DupeCommand;
 import me.gregzee.dupe.config.ConfigManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,8 +28,9 @@ public final class Dupe extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommand("dupe").setExecutor(new CoreCommand());
-        this.getCommand("dupe").setTabCompleter(new CoreCommand());
+        this.getCommand("dupem").setExecutor(new CoreCommand());
+        this.getCommand("dupem").setTabCompleter(new CoreCommand());
+        this.getCommand("dupe").setExecutor(new DupeCommand());
     }
 
     private void registerListeners() {
