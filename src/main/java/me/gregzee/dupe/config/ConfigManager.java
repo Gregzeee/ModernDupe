@@ -31,16 +31,16 @@ public final class ConfigManager {
 	public static final class Messages {
 
 		@Getter
-		private static String reloadSuccessful = "";
+		private static String reloadSuccessful = "&aConfiguration reload was successful!";
 
 		@Getter
-		private static String reloadFailed = "";
+		private static String reloadFailed = "&cConfiguration reload was unsuccessful. Check console for more details";
 
 		@Getter
-		private static String noPermission = "";
+		private static String noPermission = "&cYou don't have permission to use this command!";
 
 		@Getter
-		private static String exceededMaxDupeCount = "";
+		private static String exceededMaxDupeCount = "&cYou've exceeded the maximum dupe count. Please try a lower amount!";
 	}
 
 	public static void load() {
