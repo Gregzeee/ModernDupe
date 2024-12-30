@@ -41,6 +41,9 @@ public final class ConfigManager {
 
 		@Getter
 		private static String exceededMaxDupeCount = "&cYou've exceeded the maximum dupe count. Please try a lower amount!";
+
+		@Getter
+		private static String onlyPlayers = "&cOnly players can use this command!";
 	}
 
 	public static void load() {
