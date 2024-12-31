@@ -1,6 +1,6 @@
-package me.gregzee.dupe.commands;
+package me.gregzee.moderndupe.commands;
 
-import me.gregzee.dupe.config.ConfigManager;
+import me.gregzee.moderndupe.config.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;

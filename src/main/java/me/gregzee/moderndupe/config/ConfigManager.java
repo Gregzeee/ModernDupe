@@ -1,7 +1,7 @@
-package me.gregzee.dupe.config;
+package me.gregzee.moderndupe.config;
 
 import lombok.Getter;
-import me.gregzee.dupe.Dupe;
+import me.gregzee.moderndupe.ModernDupe;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -14,10 +14,10 @@ public final class ConfigManager {
 	public static final class Permissions {
 
 		@Getter
-		private static String dupe = "dupe.use";
+		private static String dupe = "moderndupe.use";
 
 		@Getter
-		private static String reload = "dupe.reload";
+		private static String reload = "moderndupe.reload";
 
 	}
 
@@ -40,17 +40,17 @@ public final class ConfigManager {
 		private static String noPermission = "&cYou don't have permission to use this command!";
 
 		@Getter
-		private static String exceededMaxDupeCount = "&cYou've exceeded the maximum dupe count. Please try a lower amount!";
+		private static String exceededMaxDupeCount = "&cYou've exceeded the maximum moderndupe count. Please try a lower amount!";
 
 		@Getter
 		private static String onlyPlayers = "&cOnly players can use this command!";
 	}
 
 	public static void load() {
-		Dupe instance = Dupe.getInstance();
+		ModernDupe instance = ModernDupe.getInstance();
 		FileConfiguration config = instance.getConfig();
 
-		Permissions.dupe = config.getString("permissions.dupe");
+		Permissions.dupe = config.getString("permissions.moderndupe");
 		Permissions.reload = config.getString("permissions.reload");
 
 		for (String item : config.getStringList("blacklist")) {

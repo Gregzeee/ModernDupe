@@ -1,15 +1,15 @@
-package me.gregzee.dupe;
+package me.gregzee.moderndupe;
 
 import lombok.Getter;
-import me.gregzee.dupe.commands.CoreCommand;
-import me.gregzee.dupe.commands.DupeCommand;
-import me.gregzee.dupe.config.ConfigManager;
+import me.gregzee.moderndupe.commands.CoreCommand;
+import me.gregzee.moderndupe.commands.DupeCommand;
+import me.gregzee.moderndupe.config.ConfigManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Dupe extends JavaPlugin {
+public final class ModernDupe extends JavaPlugin {
 
     @Getter
-    private static Dupe instance;
+    private static ModernDupe instance;
     public ConfigManager configManager;
 
     @Override
@@ -23,14 +23,14 @@ public final class Dupe extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("Disabling plugin 'Dupe'...");
+        getLogger().info("Disabling plugin 'ModernDupe'...");
         saveDefaultConfig();
     }
 
     private void registerCommands() {
         this.getCommand("dupem").setExecutor(new CoreCommand());
         this.getCommand("dupem").setTabCompleter(new CoreCommand());
-        this.getCommand("dupe").setExecutor(new DupeCommand());
+        this.getCommand("moderndupe").setExecutor(new DupeCommand());
     }
 
     private void registerListeners() {
