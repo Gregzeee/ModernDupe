@@ -53,6 +53,7 @@ public final class ConfigManager {
 		Permissions.dupe = config.getString("permissions.moderndupe");
 		Permissions.reload = config.getString("permissions.reload");
 
+		// TODO - fix this and use a try catch when parsing
 		for (String item : config.getStringList("blacklist")) {
 			Material material = Material.getMaterial(item);
 			blacklist.add(material);
