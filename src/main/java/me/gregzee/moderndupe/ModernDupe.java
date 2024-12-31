@@ -28,9 +28,9 @@ public final class ModernDupe extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommand("dupem").setExecutor(new CoreCommand());
-        this.getCommand("dupem").setTabCompleter(new CoreCommand());
-        this.getCommand("moderndupe").setExecutor(new DupeCommand());
+        this.getCommand("moderndupe").setExecutor(new CoreCommand());
+        this.getCommand("moderndupe").setTabCompleter(new CoreCommand());
+        this.getCommand("dupe").setExecutor(new DupeCommand());
     }
 
     private void registerListeners() {
