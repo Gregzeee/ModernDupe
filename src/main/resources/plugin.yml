@@ -1,11 +1,10 @@
-name: Dupe
+name: ModernDupe
 version: ${version}
-main: me.gregzee.dupe.Dupe
+main: me.gregzee.moderndupe.ModernDupe
 api-version: '1.20.4'
 authors: [ Gregzee ]
 description: Your plugin description here.
 load: POSTWORLD
-depend: [CommandAPI]
 
 commands:
   dupe:
