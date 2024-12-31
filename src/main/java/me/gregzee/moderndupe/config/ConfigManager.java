@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 public final class ConfigManager {
@@ -21,8 +23,9 @@ public final class ConfigManager {
 
 	}
 
+	// Use a set for blacklist due to it using O(1) time complexity for lookups
 	@Getter
-	private static ArrayList<Material> blacklist = new ArrayList<>();
+	private static Set<Material> blacklist = new HashSet<>();
 
 	@Getter
 	private static int maxDupeCount = 5;
@@ -53,10 +56,19 @@ public final class ConfigManager {
 		Permissions.dupe = config.getString("permissions.moderndupe");
 		Permissions.reload = config.getString("permissions.reload");
 
-		// TODO - fix this and use a try catch when parsing
+
 		for (String item : config.getStringList("blacklist")) {
-			Material material = Material.getMaterial(item);
-			blacklist.add(material);
+			Material material = Material.getMaterial(item.toUpperCase());
+
+			if (material != null) {
+				blacklist.add(material);
+
+			} else {
+				instance.getLogger().warning("Invalid material in blacklist: " + item);
+
+			}
+
+
 		}
 
 		maxDupeCount = config.getInt("maxDupeCount");
