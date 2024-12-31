@@ -1,7 +1,7 @@
 # All permissions linked to commands
 permissions:
-  dupe: "dupe.use" # Permission required to use /dupe
-  reload: "dupe.reload" # Permission required to reload the configuration
+  dupe: "moderndupe.use" # Permission required to use /dupe
+  reload: "moderndupe.reload" # Permission required to reload the configuration
 
 # Blacklist for items that you are not allowed to dupe
 blacklist:
