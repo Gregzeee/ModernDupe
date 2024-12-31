@@ -10,21 +10,25 @@ public final class ModernDupe extends JavaPlugin {
 
     @Getter
     private static ModernDupe instance;
-    public ConfigManager configManager;
 
     @Override
     public void onEnable() {
         instance = this;
-        configManager = new ConfigManager();
+
+        saveDefaultConfig();
+
+        ConfigManager.load();
 
         registerCommands();
         registerListeners();
+
+
     }
 
     @Override
     public void onDisable() {
         getLogger().info("Disabling plugin 'ModernDupe'...");
-        saveDefaultConfig();
+        saveConfig();
     }
 
     private void registerCommands() {
