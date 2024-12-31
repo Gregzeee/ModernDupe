@@ -22,7 +22,7 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	private static ArrayList<Material> blacklist;
+	private static ArrayList<Material> blacklist = new ArrayList<>();
 
 	@Getter
 	private static int maxDupeCount = 5;
