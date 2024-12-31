@@ -1,5 +1,6 @@
 package me.gregzee.moderndupe.commands;
 
+import me.gregzee.moderndupe.ModernDupe;
 import me.gregzee.moderndupe.config.ConfigManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
@@ -34,7 +35,7 @@ public final class CoreCommand implements CommandExecutor, TabCompleter {
 				sender.sendMessage(Component.text(ConfigManager.Messages.getReloadSuccessful()));
 				return true;
 			} catch (Exception exception) {
-				System.out.println(exception.getMessage());
+				ModernDupe.getInstance().getLogger().severe(exception.getMessage());
 				sender.sendMessage(Component.text(ConfigManager.Messages.getReloadFailed()));
 				return true;
 			}
