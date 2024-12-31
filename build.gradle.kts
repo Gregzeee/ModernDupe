@@ -22,7 +22,7 @@ dependencies {
     annotationProcessor(libs.lombok)
 }
 
-group = "me.gregzee.dupe"
+group = "me.gregzee.moderndupe"
 version = "1.0.0"
 description = "Plugin Description"
 
