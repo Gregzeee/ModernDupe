@@ -20,6 +20,7 @@ java {
 dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.lombok)
+    compileOnly(libs.lifestealz)
     annotationProcessor(libs.lombok)
     compileOnly(fileTree("libs") { include("ExcellentCrates.jar") })
     compileOnly(fileTree("libs") { include("nightcore.jar") })
