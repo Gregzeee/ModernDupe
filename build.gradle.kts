@@ -9,6 +9,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://maven.pkg.github.com/KartoffelChipss/LifeStealZ")
     flatDir { dirs("libs") }
 }
 
