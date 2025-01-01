@@ -22,7 +22,6 @@ public final class ModernDupe extends JavaPlugin {
         registerCommands();
         registerListeners();
 
-
     }
 
     @Override
