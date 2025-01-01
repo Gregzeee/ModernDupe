@@ -4,14 +4,15 @@ import lombok.Getter;
 import me.gregzee.moderndupe.ModernDupe;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 public final class ConfigManager {
 
+	/**
+	 * Class for holding all permissions related to the plugin
+	 */
 	@Getter
 	public static final class Permissions {
 
@@ -23,13 +24,15 @@ public final class ConfigManager {
 
 	}
 
-	// Use a set for blacklist due to it using O(1) time complexity for lookups
 	@Getter
 	private static Set<Material> blacklist = new HashSet<>();
 
 	@Getter
 	private static int maxDupeCount = 5;
 
+	/**
+	 * Class for holding all messages related to the plugin
+	 */
 	@Getter
 	public static final class Messages {
 
@@ -49,6 +52,9 @@ public final class ConfigManager {
 		private static String onlyPlayers = "&cOnly players can use this command!";
 	}
 
+	/**
+	 * Loads config values from the config file into memory.
+	 */
 	public static void load() {
 		ModernDupe instance = ModernDupe.getInstance();
 		FileConfiguration config = instance.getConfig();
@@ -67,8 +73,6 @@ public final class ConfigManager {
 				instance.getLogger().warning("Invalid material in blacklist: " + item);
 
 			}
-
-
 		}
 
 		maxDupeCount = config.getInt("maxDupeCount");
@@ -81,7 +85,7 @@ public final class ConfigManager {
 	}
 
 	/**
-	 * Method for logging all config values to console
+	 * Method for logging all config values to console. Used for debugging purposes
 	 */
 	public static void debug() {
 		ModernDupe instance = ModernDupe.getInstance();
@@ -110,5 +114,4 @@ public final class ConfigManager {
 		instance.getLogger().info("  Exceeded Max Dupe Count: " + Messages.exceededMaxDupeCount);
 		instance.getLogger().info("  Only Players: " + Messages.onlyPlayers);
 	}
-
 }
