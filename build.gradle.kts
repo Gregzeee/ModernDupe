@@ -22,6 +22,7 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     compileOnly(fileTree("libs") { include("ExcellentCrates.jar") })
+    compileOnly(fileTree("libs") { include("nightcore.jar") })
 }
 
 group = "me.gregzee.moderndupe"
@@ -38,6 +39,7 @@ tasks {
         archiveClassifier = null
 
         relocate("su.nightexpress.crates", "me.gregzee.moderndupe.libs.crates")
+        relocate("su.nightexpress.nightcore", "me.gregzee.moderndupe.libs.nightcore")
         manifest {
             attributes["Implementation-Version"] = rootProject.version
         }
