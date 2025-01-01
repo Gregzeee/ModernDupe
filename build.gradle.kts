@@ -9,6 +9,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    flatDir { dirs("libs") }
 }
 
 java {
@@ -20,6 +21,7 @@ dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
+    compileOnly(fileTree("libs") { include("ExcellentCrates.jar") })
 }
 
 group = "me.gregzee.moderndupe"
@@ -35,6 +37,7 @@ tasks {
         archiveFileName = "${rootProject.name}-${project.version}.jar"
         archiveClassifier = null
 
+        relocate("su.nightexpress.crates", "me.gregzee.moderndupe.libs.crates")
         manifest {
             attributes["Implementation-Version"] = rootProject.version
         }
