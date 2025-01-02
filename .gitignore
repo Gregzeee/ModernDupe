@@ -40,3 +40,4 @@ bin/
 
 # Common working directory
 run/
+gradle.properties
