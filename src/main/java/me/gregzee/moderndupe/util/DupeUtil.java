@@ -99,12 +99,22 @@ public final class DupeUtil {
 		return false;
 	}
 
+	/**
+	 * Utility method to add multiple of a certain item into a players inventory
+	 * @param player the player to add the items to
+	 * @param item the item to add to the players inventory
+	 * @param count the amount of the given item to put into the players inventory
+	 */
 	private void addToInventory(Player player, ItemStack item, int count) {
 		for (int i = 0; i < count; i++) {
 			player.getInventory().addItem(item);
 		}
 	}
 
+	/**
+	 * Multiplies the item inside the players main hand once
+	 * @param player the player to multiply the item for
+	 */
 	public void dupe(Player player) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
@@ -121,6 +131,11 @@ public final class DupeUtil {
 		player.sendMessage(Component.text(ConfigManager.Messages.getCantDupe()));
 	}
 
+	/**
+	 * Multiplies the item inside a players main hand by count
+	 * @param player the player to multiply items for
+	 * @param count the amount of times to multiply
+	 */
 	public void dupe(Player player, int count) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
