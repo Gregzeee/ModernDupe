@@ -83,35 +83,4 @@ public final class ConfigManager {
 		Messages.exceededMaxDupeCount = config.getString("messages.exceededMaxDupeCount");
 		Messages.onlyPlayers = config.getString("messages.onlyPlayers");
 	}
-
-	/**
-	 * Method for logging all config values to console. Used for debugging purposes
-	 */
-	public static void debug() {
-		ModernDupe instance = ModernDupe.getInstance();
-
-		// Log Permissions
-		instance.getLogger().info("Permissions:");
-		instance.getLogger().info("  Dupe Permission: " + Permissions.dupe);
-		instance.getLogger().info("  Reload Permission: " + Permissions.reload);
-
-		// Log Blacklist
-		instance.getLogger().info("Blacklist:");
-		if (blacklist.isEmpty()) {
-			instance.getLogger().info("  None");
-		} else {
-			blacklist.forEach(material -> instance.getLogger().info("  - " + material.name()));
-		}
-
-		// Log maxDupeCount
-		instance.getLogger().info("Max Dupe Count: " + maxDupeCount);
-
-		// Log Messages
-		instance.getLogger().info("Messages:");
-		instance.getLogger().info("  Reload Successful: " + Messages.reloadSuccessful);
-		instance.getLogger().info("  Reload Failed: " + Messages.reloadFailed);
-		instance.getLogger().info("  No Permission: " + Messages.noPermission);
-		instance.getLogger().info("  Exceeded Max Dupe Count: " + Messages.exceededMaxDupeCount);
-		instance.getLogger().info("  Only Players: " + Messages.onlyPlayers);
-	}
 }
