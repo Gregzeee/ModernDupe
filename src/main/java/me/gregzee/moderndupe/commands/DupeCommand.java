@@ -27,7 +27,17 @@ public final class DupeCommand implements CommandExecutor {
 		}
 
 		if (args.length == 1) {
-			//TODO - add trycatch for converting it into integer
+			int count;
+
+			try {
+				count = Integer.parseInt(args[0]);
+			} catch (NumberFormatException e) {
+				player.sendMessage(ConfigManager.Messages.getInvalidDupeCount());
+				return true;
+			}
+
+
+
 			dupeUtil.dupe(player, Integer.parseInt(args[0]));
 
 		} else if (args.length == 0) {

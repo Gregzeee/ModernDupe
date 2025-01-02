@@ -57,6 +57,9 @@ public final class ConfigManager {
 
 		@Getter
 		private static Component cantDupe = serializer.deserialize("&cYou can't dupe that item, because it contains a blacklisted item!");
+
+		@Getter
+		private static Component invalidDupeCount = serializer.deserialize("&cYou entered an invalid dupe count!");
 	}
 
 	/**
