@@ -50,6 +50,9 @@ public final class ConfigManager {
 
 		@Getter
 		private static String onlyPlayers = "&cOnly players can use this command!";
+
+		@Getter
+		private static String cantDupe = "&cYou can't dupe that item, because it contains a blacklisted item!";
 	}
 
 	/**
@@ -82,5 +85,6 @@ public final class ConfigManager {
 		Messages.noPermission = config.getString("messages.noPermission");
 		Messages.exceededMaxDupeCount = config.getString("messages.exceededMaxDupeCount");
 		Messages.onlyPlayers = config.getString("messages.onlyPlayers");
+		Messages.cantDupe = config.getString("messages.cantDupe");
 	}
 }
