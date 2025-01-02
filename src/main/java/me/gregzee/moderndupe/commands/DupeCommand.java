@@ -1,6 +1,7 @@
 package me.gregzee.moderndupe.commands;
 
 import me.gregzee.moderndupe.config.ConfigManager;
+import me.gregzee.moderndupe.util.DupeUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
@@ -23,14 +24,15 @@ public final class DupeCommand implements CommandExecutor {
 		}
 
 		if (args.length == 1) {
+			//TODO - add trycatch for converting it into integer
+			DupeUtil.dupe(player, Integer.parseInt(args[0]));
 
 		} else if (args.length == 0) {
-			
+			DupeUtil.dupe(player);
 		} else {
-			player.sendMessage(Component.text("").color(NamedTextColor.RED));
+			player.sendMessage(Component.text("lawl").color(NamedTextColor.RED));
 			return true;
 		}
-
 
 		return true;
 	}
