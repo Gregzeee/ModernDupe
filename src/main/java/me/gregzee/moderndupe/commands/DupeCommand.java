@@ -11,6 +11,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public final class DupeCommand implements CommandExecutor {
+
+	private final DupeUtil dupeUtil = new DupeUtil();
+
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
 		if (!(sender instanceof Player player)) {
@@ -25,10 +28,10 @@ public final class DupeCommand implements CommandExecutor {
 
 		if (args.length == 1) {
 			//TODO - add trycatch for converting it into integer
-			DupeUtil.dupe(player, Integer.parseInt(args[0]));
+			dupeUtil.dupe(player, Integer.parseInt(args[0]));
 
 		} else if (args.length == 0) {
-			DupeUtil.dupe(player);
+			dupeUtil.dupe(player);
 		} else {
 			player.sendMessage(Component.text("lawl").color(NamedTextColor.RED));
 			return true;
