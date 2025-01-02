@@ -9,7 +9,13 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://maven.pkg.github.com/KartoffelChipss/LifeStealZ")
+    maven {
+        url = uri("https://maven.pkg.github.com/KartoffelChipss/LifeStealZ")
+        credentials {
+            username = findProperty("GITHUB_USERNAME") as String? ?: ""
+            password = findProperty("GITHUB_TOKEN") as String? ?: ""
+        }
+    }
     flatDir { dirs("libs") }
 }
 
