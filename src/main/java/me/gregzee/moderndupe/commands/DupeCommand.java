@@ -36,14 +36,12 @@ public final class DupeCommand implements CommandExecutor {
 				return true;
 			}
 
-
-
-			dupeUtil.dupe(player, Integer.parseInt(args[0]));
+			dupeUtil.dupe(player, count);
 
 		} else if (args.length == 0) {
 			dupeUtil.dupe(player);
 		} else {
-			player.sendMessage(Component.text("lawl").color(NamedTextColor.RED));
+			player.sendMessage(Component.text("Invalid usage! Use: /dupe <count>").color(NamedTextColor.RED));
 			return true;
 		}
 
