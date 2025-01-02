@@ -2,12 +2,12 @@ name: ModernDupe
 version: ${version}
 main: me.gregzee.moderndupe.ModernDupe
 api-version: '1.20'
-authors: [ Gregzee ]
+author: Gregzee
 description: Your plugin description here.
 load: POSTWORLD
 depend:
   - ExcellentCrates
-  - LifestealZ
+  - LifeStealZ
 
 commands:
   dupe:
