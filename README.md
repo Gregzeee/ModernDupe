@@ -32,6 +32,34 @@ Installation is simple. Download the plugin from release [here]. Drop it in your
 
 P.S - I heavily recommend also editing the config.yml before using the plugin 
 
+## Config.yml
+
+```yaml
+# All permissions linked to commands
+permissions:
+  dupe: "moderndupe.use" # Permission required to use /dupe
+  reload: "moderndupe.reload" # Permission required to reload the configuration
+
+# Blacklist for items that you are not allowed to dupe
+blacklist:
+  - "BEDROCK"
+  - "AIR"
+  - "COMMAND_BLOCK"
+  - "GRASS_BLOCK"
+
+# The amount of times a person can dupe something with one command
+maxDupeCount: 5
+
+# All messages used within the plugin
+messages:
+  reloadSuccessful: "&aConfiguration reload was successful!" # Sent when reloading the config was successful
+  reloadFailed: "&cConfiguration reload was unsuccessful. Check console for more details" # Sent when reloading the configuration failed
+  noPermission: "&cYou don't have permission to use this command!" # Sent if the player doesn't have permission to execute said command
+  exceededMaxDupeCount: "&cYou've exceeded the maximum dupe count. Please try a lower amount!" # Sent if the player tries to dupe more than they are allowed to at once
+  onlyPlayers: "&cOnly players can use this command!" # Sent if a command is executed by someone that isn't a player
+  cantDupe: "&cYou can't dupe that item, because it contains a blacklisted item!" # Sent if the player tries to use /dupe, but one of the items is blacklisted
+```
+
 ## Issues
 
 For reporting issues simply create an issue [here].
