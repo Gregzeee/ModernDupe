@@ -1,6 +1,7 @@
 package me.gregzee.moderndupe.util;
 
 import me.gregzee.moderndupe.config.ConfigManager;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ public final class DupeUtil {
 	 * @param item the item to check
 	 * @return {@code true} if the item is a key; {@code false} otherwise
 	 */
-	private static boolean isCrateKey(ItemStack item) {
+	private boolean isCrateKey(ItemStack item) {
 		if (item == null) {
 			return false;
 		}
@@ -44,6 +45,12 @@ public final class DupeUtil {
 		Set<String> customItemIDs = lifeStealZ.getCustomItemIDs();
 
 		return customItemIDs.contains(customID);
+	}
+
+	private boolean hasShulkerBoxInHand(Player player) {
+		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
+
+		return itemInMainHand != null && itemInMainHand.getType() == Material.SHULKER_BOX;
 	}
 
 	/**
@@ -92,16 +99,41 @@ public final class DupeUtil {
 		return false;
 	}
 
-	public static void dupe(Player player) {
-
+	private void addToInventory(Player player, ItemStack item, int count) {
+		for (int i = 0; i < count; i++) {
+			player.getInventory().addItem(item);
+		}
 	}
 
-	public static void dupe(Player player, int count) {
+	public void dupe(Player player) {
+		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
+		if (itemInMainHand == null) {
+			return;
+		}
+
+		if (hasShulkerBoxInHand(player) && !containsBlacklistedItemsInShulker((ShulkerBox) itemInMainHand.getItemMeta())) {
+			player.getInventory().addItem(itemInMainHand);
+		} else if (!isBlacklisted(itemInMainHand)) {
+			player.getInventory().addItem(itemInMainHand);
+		}
+
+		player.sendMessage(Component.text(ConfigManager.Messages.getCantDupe()));
 	}
 
-	private boolean hasShulkerBoxInHand(Player player) {
-		return true;
-	}
+	public void dupe(Player player, int count) {
+		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
+		if (itemInMainHand == null) {
+			return;
+		}
+
+		if (hasShulkerBoxInHand(player) && !containsBlacklistedItemsInShulker((ShulkerBox) itemInMainHand.getItemMeta())) {
+			addToInventory(player, itemInMainHand, count);
+		} else if (!isBlacklisted(itemInMainHand)) {
+			addToInventory(player, itemInMainHand, count);
+		}
+
+		player.sendMessage(Component.text(ConfigManager.Messages.getCantDupe()));
+	}
 }
