@@ -30,7 +30,7 @@ public final class DupeUtil {
 	 * @param item the item to check
 	 * @return {@code true} if the item is a custom item from LifestealZ; {@code false} otherwise
 	 */
-	private static boolean isLifestealZItem(ItemStack item) {
+	private boolean isLifestealZItem(ItemStack item) {
 		if (item == null) {
 			return false;
 		}
@@ -51,7 +51,7 @@ public final class DupeUtil {
 	 * @param item the item to check
 	 * @return {@code true} if the item is blacklisted; {@code false} otherwise
 	 */
-	private static boolean isBlacklisted(ItemStack item) {
+	private boolean isBlacklisted(ItemStack item) {
 		// Check if the item is null
 		if (item == null) {
 			return false;
@@ -74,7 +74,7 @@ public final class DupeUtil {
 	 * @param shulkerBox the shulker box of which to check the contents of
 	 * @return {@code true} if a blacklisted item was found; {@code false} otherwise
 	 */
-	private static boolean containsBlacklistedItemsInShulker(ShulkerBox shulkerBox) {
+	private boolean containsBlacklistedItemsInShulker(ShulkerBox shulkerBox) {
 
 		// Get the entire contents of the shulker
 		ItemStack[] contents = shulkerBox.getInventory().getContents();
@@ -92,18 +92,16 @@ public final class DupeUtil {
 		return false;
 	}
 
-	public void dupe(Player player) {
-		if (!player.getInventory().getItemInMainHand().getType().equals(Material.SHULKER_BOX)) {
-//			if (!containsBlacklistedItemsInShulker(() player.getInventory().getItemInMainHand())) {
-//
-//			}
+	public static void dupe(Player player) {
 
-
-		}
 	}
 
-	public void dupe(Player player, int count) {
+	public static void dupe(Player player, int count) {
 
+	}
+
+	private boolean hasShulkerBoxInHand(Player player) {
+		return true;
 	}
 
 }
