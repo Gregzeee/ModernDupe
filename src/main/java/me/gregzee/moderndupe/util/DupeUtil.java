@@ -128,7 +128,7 @@ public final class DupeUtil {
 			player.getInventory().addItem(itemInMainHand);
 		}
 
-		player.sendMessage(Component.text(ConfigManager.Messages.getCantDupe()));
+		player.sendMessage(ConfigManager.Messages.getCantDupe());
 	}
 
 	/**
@@ -149,6 +149,6 @@ public final class DupeUtil {
 			addToInventory(player, itemInMainHand, count);
 		}
 
-		player.sendMessage(Component.text(ConfigManager.Messages.getCantDupe()));
+		player.sendMessage(ConfigManager.Messages.getCantDupe());
 	}
 }

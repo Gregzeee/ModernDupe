@@ -31,11 +31,11 @@ public final class CoreCommand implements CommandExecutor, TabCompleter {
 
 			try {
 				ConfigManager.load();
-				sender.sendMessage(Component.text(ConfigManager.Messages.getReloadSuccessful()));
+				sender.sendMessage(ConfigManager.Messages.getReloadSuccessful());
 				return true;
 			} catch (Exception exception) {
 				ModernDupe.getInstance().getLogger().severe(exception.getMessage());
-				sender.sendMessage(Component.text(ConfigManager.Messages.getReloadFailed()));
+				sender.sendMessage(ConfigManager.Messages.getReloadFailed());
 				return true;
 			}
 		}
