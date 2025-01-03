@@ -42,6 +42,7 @@ public final class DupeCommand implements CommandExecutor {
 
 			if (count > maxCount) {
 				player.sendMessage(ConfigManager.Messages.getExceededMaxDupeCount());
+				return true;
 			}
 
 			dupeUtil.dupe(player, count);
