@@ -6,6 +6,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 @Getter
@@ -27,6 +29,8 @@ public final class ConfigManager {
 
 	}
 
+	@Getter
+	private static @NotNull Map<String, Object> dupeCountLimits = new HashMap<>();
 
 	@Getter
 	private static Set<Material> blacklist = new HashSet<>();
@@ -66,10 +70,14 @@ public final class ConfigManager {
 		ModernDupe instance = ModernDupe.getInstance();
 		FileConfiguration config = instance.getConfig();
 
+		// Permissions
 		Permissions.dupe = config.getString("permissions.dupe");
 		Permissions.reload = config.getString("permissions.reload");
 
+		// Dupe count limits
+		dupeCountLimits = config.getConfigurationSection("dupeCountLimits").getValues(false);
 
+        // Blacklist
 		for (String item : config.getStringList("blacklist")) {
 			Material material = Material.getMaterial(item.toUpperCase());
 
@@ -82,6 +90,7 @@ public final class ConfigManager {
 			}
 		}
 
+		// Messages
 		Messages.reloadSuccessful = serializer.deserialize(config.getString("messages.reloadSuccessful"));
 		Messages.reloadFailed = serializer.deserialize(config.getString("messages.reloadFailed"));
 		Messages.noPermission = serializer.deserialize(config.getString("messages.noPermission"));
