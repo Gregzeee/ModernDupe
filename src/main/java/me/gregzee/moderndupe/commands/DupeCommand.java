@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import java.util.Map;
 
 public final class DupeCommand implements CommandExecutor {
 
@@ -28,6 +29,9 @@ public final class DupeCommand implements CommandExecutor {
 
 		if (args.length == 1) {
 			int count;
+			int maxCount;
+
+			maxCount = getMaxDupeCount(player);
 
 			try {
 				count = Integer.parseInt(args[0]);
@@ -36,15 +40,39 @@ public final class DupeCommand implements CommandExecutor {
 				return true;
 			}
 
+			if (count > maxCount) {
+				player.sendMessage(ConfigManager.Messages.getExceededMaxDupeCount());
+			}
+
 			dupeUtil.dupe(player, count);
+			return true;
 
 		} else if (args.length == 0) {
 			dupeUtil.dupe(player);
+			return true;
 		} else {
 			player.sendMessage(Component.text("Invalid usage! Use: /dupe <count>").color(NamedTextColor.RED));
 			return true;
 		}
+	}
 
-		return true;
+	/**
+	 * Utility method to check how much the given player is allowed to dupe at once
+	 * @param player the player to check the max dupe count of
+	 * @return the max amount the player is allowed to dupe
+	 */
+	private int getMaxDupeCount(Player player) {
+		int maxCount = 0;
+
+		for (Map.Entry<String, Object> entry : ConfigManager.getDupeCountLimits().entrySet()) {
+			String permission = entry.getKey();
+			int count = (int) entry.getValue();
+
+			if (player.hasPermission(permission)) {
+				maxCount = Math.max(maxCount, count);
+			}
+		}
+
+		return maxCount;
 	}
 }
