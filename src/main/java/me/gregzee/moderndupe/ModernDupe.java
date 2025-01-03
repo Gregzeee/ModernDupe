@@ -20,7 +20,6 @@ public final class ModernDupe extends JavaPlugin {
         ConfigManager.load();
 
         registerCommands();
-        registerListeners();
 
     }
 
@@ -34,9 +33,5 @@ public final class ModernDupe extends JavaPlugin {
         this.getCommand("moderndupe").setExecutor(new CoreCommand());
         this.getCommand("moderndupe").setTabCompleter(new CoreCommand());
         this.getCommand("dupe").setExecutor(new DupeCommand());
-    }
-
-    private void registerListeners() {
-
     }
 }
