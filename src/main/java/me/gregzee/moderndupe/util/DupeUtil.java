@@ -139,10 +139,6 @@ public final class DupeUtil {
 	public void dupe(Player player, int count) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
-		if (itemInMainHand == null) {
-			return;
-		}
-
 		if (hasShulkerBoxInHand(player) && !containsBlacklistedItemsInShulker((ShulkerBox) itemInMainHand.getItemMeta())) {
 			addToInventory(player, itemInMainHand, count);
 		} else if (!isBlacklisted(itemInMainHand)) {
