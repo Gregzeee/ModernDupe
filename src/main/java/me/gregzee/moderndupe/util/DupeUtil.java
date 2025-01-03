@@ -1,11 +1,12 @@
 package me.gregzee.moderndupe.util;
 
 import me.gregzee.moderndupe.config.ConfigManager;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.strassburger.lifestealz.LifeStealZ;
 import org.strassburger.lifestealz.api.LifeStealZAPI;
 import su.nightexpress.excellentcrates.CratesAPI;
@@ -47,10 +48,37 @@ public final class DupeUtil {
 		return customItemIDs.contains(customID);
 	}
 
+	/**
+	 *
+	 * @param player
+	 * @return
+	 */
 	private boolean hasShulkerBoxInHand(Player player) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
 		return itemInMainHand != null && itemInMainHand.getType() == Material.SHULKER_BOX;
+	}
+
+	private ShulkerBox getShulkerBoxFromItemStack(ItemStack itemStack) {
+		if (itemStack == null) {
+			return null;
+		}
+
+		if (!itemStack.hasItemMeta()) {
+			return null;
+		}
+
+		if (!(itemStack.getItemMeta() instanceof BlockStateMeta)) {
+			return null;
+		}
+
+		BlockState blockState = (BlockState) ((BlockStateMeta) itemStack.getItemMeta()).getBlockState();
+
+		if (blockState instanceof ShulkerBox) {
+			return (ShulkerBox) blockState;
+		}
+
+		return null;
 	}
 
 	/**
@@ -112,7 +140,7 @@ public final class DupeUtil {
 	}
 
 	/**
-	 * Multiplies the item inside the players main hand once
+	 * Multiplies the item inside the player's main hand once
 	 * @param player the player to multiply the item for
 	 */
 	public void dupe(Player player) {
@@ -122,29 +150,47 @@ public final class DupeUtil {
 			return;
 		}
 
-		if (hasShulkerBoxInHand(player) && !containsBlacklistedItemsInShulker((ShulkerBox) itemInMainHand.getItemMeta())) {
-			player.getInventory().addItem(itemInMainHand);
-		} else if (!isBlacklisted(itemInMainHand)) {
-			player.getInventory().addItem(itemInMainHand);
-		}
+		// Get the ShulkerBox if the item is a Shulker Box
+		ShulkerBox shulkerBox = getShulkerBoxFromItemStack(itemInMainHand);
 
-		player.sendMessage(ConfigManager.Messages.getCantDupe());
+		if (shulkerBox != null) {
+			if (containsBlacklistedItemsInShulker(shulkerBox)) {
+				player.sendMessage(ConfigManager.Messages.getCantDupe());
+				return;
+			}
+
+			addToInventory(player, itemInMainHand, 1);
+		} else if (!isBlacklisted(itemInMainHand)) {
+			addToInventory(player, itemInMainHand, 1);
+		} else {
+			player.sendMessage(ConfigManager.Messages.getCantDupe());
+		}
 	}
 
 	/**
-	 * Multiplies the item inside a players main hand by count
+	 * Multiplies the item inside a player's main hand by count
 	 * @param player the player to multiply items for
 	 * @param count the amount of times to multiply
 	 */
 	public void dupe(Player player, int count) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
-		if (hasShulkerBoxInHand(player) && !containsBlacklistedItemsInShulker((ShulkerBox) itemInMainHand.getItemMeta())) {
+		if (itemInMainHand == null) {
+			return;
+		}
+
+		ShulkerBox shulkerBox = getShulkerBoxFromItemStack(itemInMainHand);
+
+		if (shulkerBox != null) {
+			if (containsBlacklistedItemsInShulker(shulkerBox)) {
+				player.sendMessage(ConfigManager.Messages.getCantDupe());
+				return;
+			}
 			addToInventory(player, itemInMainHand, count);
 		} else if (!isBlacklisted(itemInMainHand)) {
 			addToInventory(player, itemInMainHand, count);
+		} else {
+			player.sendMessage(ConfigManager.Messages.getCantDupe());
 		}
-
-		player.sendMessage(ConfigManager.Messages.getCantDupe());
 	}
 }
