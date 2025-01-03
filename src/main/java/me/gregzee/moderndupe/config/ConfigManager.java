@@ -30,7 +30,7 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	private static @NotNull Map<String, Object> dupeCountLimits = new HashMap<>();
+	private static @NotNull Map<String, Integer> dupeCountLimits = new HashMap<>();
 
 	@Getter
 	private static Set<Material> blacklist = new HashSet<>();
@@ -75,7 +75,15 @@ public final class ConfigManager {
 		Permissions.reload = config.getString("permissions.reload");
 
 		// Dupe count limits
-		dupeCountLimits = config.getConfigurationSection("dupeCountLimits").getValues(false);
+		Map<String, Object> section = config.getConfigurationSection("dupeCountLimits").getValues(false);
+
+		for (Map.Entry<String, Object> entry : section.entrySet()) {
+			try {
+				dupeCountLimits.put(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
+			} catch (NumberFormatException e) {
+				instance.getLogger().warning("Invalid number format for " + entry.getKey() + ": " + entry.getValue());
+			}
+		}
 
         // Blacklist
 		for (String item : config.getStringList("blacklist")) {
