@@ -40,15 +40,19 @@ permissions:
   dupe: "moderndupe.use" # Permission required to use /dupe
   reload: "moderndupe.reload" # Permission required to reload the configuration
 
+# Dupe count limits.
+dupeCountLimits:
+  moderndupe.dupecount.vip: 2 # Players with this permission will be able to dupe up to 2
+  moderndupe.dupecount.mvp: 4 # Players with this permission will be able to dupe up to 4 and so on
+  moderndupe.dupecount.legend: 6
+  default: 3 # If a player doesn't have any of the permissions from above this value will be used to set the limit on that player
+
 # Blacklist for items that you are not allowed to dupe
 blacklist:
   - "BEDROCK"
   - "AIR"
   - "COMMAND_BLOCK"
   - "GRASS_BLOCK"
-
-# The amount of times a person can dupe something with one command
-maxDupeCount: 5
 
 # All messages used within the plugin
 messages:
@@ -58,6 +62,7 @@ messages:
   exceededMaxDupeCount: "&cYou've exceeded the maximum dupe count. Please try a lower amount!" # Sent if the player tries to dupe more than they are allowed to at once
   onlyPlayers: "&cOnly players can use this command!" # Sent if a command is executed by someone that isn't a player
   cantDupe: "&cYou can't dupe that item, because it contains a blacklisted item!" # Sent if the player tries to use /dupe, but one of the items is blacklisted
+  invalidDupeCount: "&cYou entered an invalid dupe count!"
 ```
 
 ## Issues
