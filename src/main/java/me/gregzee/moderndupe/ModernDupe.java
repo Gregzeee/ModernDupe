@@ -21,12 +21,15 @@ public final class ModernDupe extends JavaPlugin {
 
         registerCommands();
 
+        getLogger().info("Enabled plugin 'ModernDupe'");
+
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("Disabling plugin 'ModernDupe'...");
         saveConfig();
+
+        getLogger().info("Disabled plugin 'ModernDupe'");
     }
 
     private void registerCommands() {
