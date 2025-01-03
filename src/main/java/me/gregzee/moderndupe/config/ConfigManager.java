@@ -6,8 +6,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 public final class ConfigManager {
@@ -28,11 +27,9 @@ public final class ConfigManager {
 
 	}
 
-	@Getter
-	private static Set<Material> blacklist = new HashSet<>();
 
 	@Getter
-	private static int maxDupeCount = 5;
+	private static Set<Material> blacklist = new HashSet<>();
 
 	/**
 	 * Class for holding all messages related to the plugin
@@ -84,8 +81,6 @@ public final class ConfigManager {
 
 			}
 		}
-
-		maxDupeCount = config.getInt("maxDupeCount");
 
 		Messages.reloadSuccessful = serializer.deserialize(config.getString("messages.reloadSuccessful"));
 		Messages.reloadFailed = serializer.deserialize(config.getString("messages.reloadFailed"));
