@@ -13,5 +13,6 @@ commands:
   dupe:
     aliases:
       - d
+    usage: /<command> [count]
   moderndupe:
     usage: /<command> <reload>
