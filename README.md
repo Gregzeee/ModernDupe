@@ -40,12 +40,12 @@ permissions:
   dupe: "moderndupe.use" # Permission required to use /dupe
   reload: "moderndupe.reload" # Permission required to reload the configuration
 
+# TODO - new format: 1: moderndupe.dupecount.vip|2 etc
 # Dupe count limits.
 dupeCountLimits:
   moderndupe.dupecount.vip: 2 # Players with this permission will be able to dupe up to 2
   moderndupe.dupecount.mvp: 4 # Players with this permission will be able to dupe up to 4 and so on
   moderndupe.dupecount.legend: 6
-  default: 3 # If a player doesn't have any of the permissions from above this value will be used to set the limit on that player
 
 # Blacklist for items that you are not allowed to dupe
 blacklist:
