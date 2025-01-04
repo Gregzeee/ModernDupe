@@ -66,34 +66,7 @@ public final class DupeCommand implements CommandExecutor {
 	private int getMaxDupeCount(Player player) {
 		int maxCount = 0;
 
-		ModernDupe.getInstance().getLogger().info(ConfigManager.getDupeCountLimits().toString());
 
-		ModernDupe.getInstance().getLogger().info("Checking dupe count limits for player: " + player.getName());
-		Map<String, Object> dupeCountLimits = ConfigManager.getDupeCountLimits();
-
-		for (Map.Entry<String, Object> entry : dupeCountLimits.entrySet()) {
-			String permission = entry.getKey();
-			Object value = entry.getValue();
-
-			ModernDupe.getInstance().getLogger().info("Permission: " + permission + ", Value: " + value);
-
-			// Ensure the value is an integer
-			if (!(value instanceof Integer)) {
-				ModernDupe.getInstance().getLogger().info("Invalid value type for permission " + permission + ": " + value.getClass());
-				continue;
-			}
-
-			int count = (int) value;
-
-			if (player.hasPermission(permission)) {
-				ModernDupe.getInstance().getLogger().info("Player has permission: " + permission + ", Count: " + count);
-				maxCount = Math.max(maxCount, count);
-			}
-		}
-
-		ModernDupe.getInstance().getLogger().info(dupeCountLimits.toString());
-		ModernDupe.getInstance().getLogger().info("Max dupe count for player: " + player.getName() + " is " + maxCount);
 		return maxCount;
 	}
-
 }
