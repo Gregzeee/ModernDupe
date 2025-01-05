@@ -30,6 +30,9 @@ public final class ConfigManager {
 	}
 
 	@Getter
+	private static HashMap<String, Integer> dupeCountLimits = new HashMap<>();
+
+	@Getter
 	private static Set<Material> blacklist = new HashSet<>();
 
 	/**
@@ -78,12 +81,31 @@ public final class ConfigManager {
 			instance.getLogger().warning("dupeCountLimits section is missing from the config.yml!");
 		}
 
+		// Dupe count limits
 		for (String key : section.getKeys(false)) {
 			String value = section.getString(key);
-			if (value != null) {
-				instance.getLogger().info(key + ": " + value);
+
+			// Log the raw value from the configuration
+			instance.getLogger().info("Raw config value: " + value);
+
+			// Split the value and log the result
+			String[] values = value.split("\\|");
+			instance.getLogger().info("Split values: " + Arrays.toString(values));
+
+			// Ensure the split resulted in the expected format
+			if (values.length == 2) {
+				try {
+					String dupeKey = values[0];
+					int limit = Integer.parseInt(values[1]);
+
+					// Store the parsed key-value pair
+					dupeCountLimits.put(dupeKey, limit);
+					instance.getLogger().info("Added to dupeCountLimits: " + dupeKey + " -> " + limit);
+				} catch (NumberFormatException e) {
+					instance.getLogger().warning("Invalid number format in config for key: " + key + " with value: " + values[1]);
+				}
 			} else {
-				instance.getLogger().warning("Value for key " + key + " is null!");
+				instance.getLogger().warning("Invalid format for config entry: " + key + ". Expected 'key|number' but got: " + value);
 			}
 		}
 
