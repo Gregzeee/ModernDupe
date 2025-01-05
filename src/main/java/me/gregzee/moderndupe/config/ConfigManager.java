@@ -76,12 +76,6 @@ public final class ConfigManager {
 
 		// Dupe count limits
 		ConfigurationSection section = config.getConfigurationSection("dupeCountLimits");
-
-		if (section == null) {
-			instance.getLogger().warning("dupeCountLimits section is missing from the config.yml!");
-		}
-
-		// Dupe count limits
 		for (String key : section.getKeys(false)) {
 			String value = section.getString(key);
 
