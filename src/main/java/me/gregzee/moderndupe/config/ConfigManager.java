@@ -5,8 +5,8 @@ import me.gregzee.moderndupe.ModernDupe;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -72,6 +72,20 @@ public final class ConfigManager {
 		Permissions.reload = config.getString("permissions.reload");
 
 		// Dupe count limits
+		ConfigurationSection section = config.getConfigurationSection("dupeCountLimits");
+
+		if (section == null) {
+			instance.getLogger().warning("dupeCountLimits section is missing from the config.yml!");
+		}
+
+		for (String key : section.getKeys(false)) {
+			String value = section.getString(key);
+			if (value != null) {
+				instance.getLogger().info(key + ": " + value);
+			} else {
+				instance.getLogger().warning("Value for key " + key + " is null!");
+			}
+		}
 
         // Blacklist
 		for (String item : config.getStringList("blacklist")) {
@@ -79,10 +93,8 @@ public final class ConfigManager {
 
 			if (material != null) {
 				blacklist.add(material);
-
 			} else {
 				instance.getLogger().warning("Invalid material in blacklist: " + item);
-
 			}
 		}
 
