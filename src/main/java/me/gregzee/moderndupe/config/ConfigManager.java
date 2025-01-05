@@ -79,27 +79,20 @@ public final class ConfigManager {
 		for (String key : section.getKeys(false)) {
 			String value = section.getString(key);
 
-			// Log the raw value from the configuration
 			instance.getLogger().info("Raw config value: " + value);
 
-			// Split the value and log the result
 			String[] values = value.split("\\|");
 			instance.getLogger().info("Split values: " + Arrays.toString(values));
 
-			// Ensure the split resulted in the expected format
 			if (values.length == 2) {
 				try {
 					String dupeKey = values[0];
 					int limit = Integer.parseInt(values[1]);
 
-					// Store the parsed key-value pair
 					dupeCountLimits.put(dupeKey, limit);
-					instance.getLogger().info("Added to dupeCountLimits: " + dupeKey + " -> " + limit);
 				} catch (NumberFormatException e) {
-					instance.getLogger().warning("Invalid number format in config for key: " + key + " with value: " + values[1]);
+					instance.getLogger().warning("Invalid number format in config for key: " + key + "; Value: " + values[1]);
 				}
-			} else {
-				instance.getLogger().warning("Invalid format for config entry: " + key + ". Expected 'key|number' but got: " + value);
 			}
 		}
 
