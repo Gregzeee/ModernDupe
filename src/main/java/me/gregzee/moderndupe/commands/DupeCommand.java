@@ -66,6 +66,15 @@ public final class DupeCommand implements CommandExecutor {
 	private int getMaxDupeCount(Player player) {
 		int maxCount = 0;
 
+		for (String permission : ConfigManager.getDupeCountLimits().keySet()) {
+			if (player.hasPermission(permission)) {
+				int limit = ConfigManager.getDupeCountLimits().get(permission);
+
+				if (limit > maxCount) {
+					maxCount = limit;
+				}
+			}
+		}
 
 		return maxCount;
 	}
