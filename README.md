@@ -43,9 +43,10 @@ permissions:
 # TODO - new format: 1: moderndupe.dupecount.vip|2 etc
 # Dupe count limits.
 dupeCountLimits:
-  moderndupe.dupecount.vip: 2 # Players with this permission will be able to dupe up to 2
-  moderndupe.dupecount.mvp: 4 # Players with this permission will be able to dupe up to 4 and so on
-  moderndupe.dupecount.legend: 6
+  1: "moderndupe.dupecount.vip|2"
+  2: "moderndupe.dupecount.mvp|4"
+  3: "moderndupe.dupecount.pro|5"
+
 
 # Blacklist for items that you are not allowed to dupe
 blacklist:
