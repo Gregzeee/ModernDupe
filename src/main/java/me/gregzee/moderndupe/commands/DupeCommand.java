@@ -74,6 +74,10 @@ public final class DupeCommand implements CommandExecutor {
 			}
 		}
 
+		if (maxCount == 0) {
+			maxCount = 1;
+		}
+
 		return maxCount;
 	}
 }
