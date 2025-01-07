@@ -74,6 +74,9 @@ public final class ConfigManager {
 		Permissions.dupe = config.getString("permissions.dupe");
 		Permissions.reload = config.getString("permissions.reload");
 
+		// Clear the map before putting in more values to avoid memory leaks
+		dupeCountLimits.clear();
+
 		// Dupe count limits
 		ConfigurationSection section = config.getConfigurationSection("dupeCountLimits");
 		for (String key : section.getKeys(false)) {
