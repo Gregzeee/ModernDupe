@@ -82,10 +82,8 @@ public final class ConfigManager {
 		for (String key : section.getKeys(false)) {
 			String value = section.getString(key);
 
-			instance.getLogger().info("Raw config value: " + value);
 
 			String[] values = value.split("\\|");
-			instance.getLogger().info("Split values: " + Arrays.toString(values));
 
 			if (values.length == 2) {
 				try {
