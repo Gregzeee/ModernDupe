@@ -82,9 +82,10 @@ public final class ConfigManager {
 		for (String key : section.getKeys(false)) {
 			String value = section.getString(key);
 
-
+			// Split the string into the permission and dupe count
 			String[] values = value.split("\\|");
 
+			// Check if the length is 2
 			if (values.length == 2) {
 				try {
 					String dupeKey = values[0];
