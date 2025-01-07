@@ -49,9 +49,9 @@ public final class DupeUtil {
 	}
 
 	/**
-	 *
-	 * @param player
-	 * @return
+	 * Checks if the specified player has ShulkerBox in their hand
+	 * @param player the player to check
+	 * @return {@code true} if the player has a shulkerbox in their hand; {@code false} otherwise
 	 */
 	private boolean hasShulkerBoxInHand(Player player) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
@@ -64,16 +64,19 @@ public final class DupeUtil {
 			return null;
 		}
 
+		// Make sure the item has ItemMeta
 		if (!itemStack.hasItemMeta()) {
 			return null;
 		}
 
+		// Make sure the item is an instance of BlockStateMeta
 		if (!(itemStack.getItemMeta() instanceof BlockStateMeta)) {
 			return null;
 		}
 
 		BlockState blockState = (BlockState) ((BlockStateMeta) itemStack.getItemMeta()).getBlockState();
 
+		// Check if the blockstate of the item is an instance of ShulkerBox
 		if (blockState instanceof ShulkerBox) {
 			return (ShulkerBox) blockState;
 		}
@@ -175,18 +178,23 @@ public final class DupeUtil {
 	public void dupe(Player player, int count) {
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
+		// Check if the item in the players main hand is null
 		if (itemInMainHand == null) {
 			return;
 		}
 
 		ShulkerBox shulkerBox = getShulkerBoxFromItemStack(itemInMainHand);
 
+		// Check if the method could successfully get a shulkerbox
 		if (shulkerBox != null) {
+			// Check if the shulker contains any blacklisted items
 			if (containsBlacklistedItemsInShulker(shulkerBox)) {
 				player.sendMessage(ConfigManager.Messages.getCantDupe());
 				return;
 			}
 			addToInventory(player, itemInMainHand, count);
+
+		// Check if the item is blacklisted
 		} else if (!isBlacklisted(itemInMainHand)) {
 			addToInventory(player, itemInMainHand, count);
 		} else {
