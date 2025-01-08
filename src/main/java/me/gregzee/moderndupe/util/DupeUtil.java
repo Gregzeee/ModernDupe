@@ -37,6 +37,7 @@ public final class DupeUtil {
 			return false;
 		}
 
+		// Get the LifeStealZ api
 		LifeStealZAPI lifeStealZ = LifeStealZ.getAPI();
 
 		// Get the items custom ID
